@@ -18,5 +18,6 @@ For use with Pfsense/opnsense add the ip of the docker host and add "pxelinux.0"
 * [Docker](https://www.docker.com/)
 
 #Based on:
-$ https://registry.hub.docker.com/u/mcandre/docker-pxe/
-$ https://github.com/mcandre/docker-pxe
+https://registry.hub.docker.com/u/mcandre/docker-pxe/
+
+https://github.com/mcandre/docker-pxe
