@@ -2,7 +2,7 @@
 
 # DOCKER HUB
 
-https://registry.hub.docker.com/u/reapsz/docker-pxe/
+https://registry.hub.docker.com/u/reapsz/alpine-pxe/
 
 # EXAMPLE
 
