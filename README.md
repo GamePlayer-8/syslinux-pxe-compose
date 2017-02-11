@@ -1,6 +1,8 @@
-# docker-pxe - a Docker container running a continuous PXE server
+# Alpine-pxe
+Alpine-pxe is a docker container for serving Ubuntu netboot image for PXE-boot.
+this container uses Alpine and dnsmasq in order to serve the image.
 
-# DOCKER HUB
+## DOCKER HUB
 
 https://registry.hub.docker.com/u/reapsz/alpine-pxe/
 
