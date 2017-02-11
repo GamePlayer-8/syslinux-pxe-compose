@@ -1,8 +1,13 @@
-FROM ubuntu
-MAINTAINER Andrew Pennebaker <andrew.pennebaker@gmail.com>
+############################################################
+# Dockerfile for pxe-server serving ubuntu netboot
+# Based on alpine
+############################################################
+FROM alpine
+MAINTAINER Runar Klemetsdal
 ADD http://archive.ubuntu.com/ubuntu/dists/trusty-updates/main/installer-amd64/current/images/netboot/netboot.tar.gz /netboot.tar.gz
-RUN apt-get update && \
-    apt-get install -y dnsmasq tar && \
+RUN apk update && \
+    apk add dnsmasq && \
+    apk add tar && \
     mkdir /tftpboot && \
     tar -C /tftpboot -xvf /netboot.tar.gz && \
     chown -R nobody:nogroup /tftpboot
