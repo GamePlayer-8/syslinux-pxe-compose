@@ -6,6 +6,10 @@ this container uses Alpine and dnsmasq in order to serve the image.
 
 https://registry.hub.docker.com/u/reapsz/alpine-pxe/
 
+## GitHub
+
+https://github.com/thereapsz/alpine-pxe
+
 ## EXAMPLE
 ```
 $ docker run -d -p 69:69/udp --restart=always --privileged --cap-add=NET_ADMIN reapsz/alpine-pxe
