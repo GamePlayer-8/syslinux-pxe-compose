@@ -2,7 +2,7 @@
 # Dockerfile for pxe-server serving ubuntu netboot
 # Based on alpine
 ############################################################
-FROM alpine
+FROM alpine:3.7
 MAINTAINER Runar Klemetsdal
 ADD http://archive.ubuntu.com/ubuntu/dists/trusty-updates/main/installer-amd64/current/images/netboot/netboot.tar.gz /netboot.tar.gz
 RUN apk update && \
