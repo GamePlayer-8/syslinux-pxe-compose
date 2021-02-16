@@ -2,6 +2,9 @@
 Alpine-pxe is a docker container for serving Ubuntu netboot image for PXE-boot.
 this container uses Alpine and dnsmasq in order to serve the image.
 
+configure what verson of alpine to run (default "latest")
+1. docker build --build-arg VERSION=youreversion
+
 ## DOCKER HUB
 
 https://registry.hub.docker.com/u/reapsz/alpine-pxe/
