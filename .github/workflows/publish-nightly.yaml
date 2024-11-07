@@ -100,7 +100,7 @@ jobs:
     needs: [build, build-fallback]
     if: |
       always() && 
-      (needs.build.result == 'success' && github.event_name != 'workflow_run') ||
+      (needs.build.result == 'success' && needs.build-fallback.result == 'skipped') ||
       (needs.build.result == 'failure' && needs.build-fallback.result == 'success')
     steps:
       - name: Publish release
