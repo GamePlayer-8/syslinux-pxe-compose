@@ -126,7 +126,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: [build, build-fallback]
-    if: success()
+    if: |
+      always() && 
+      (needs.build.result == 'success' && needs.build-fallback.result == 'skipped') ||
+      (needs.build.result == 'failure' && needs.build-fallback.result == 'success')
     steps:
       - name: Checkout branch
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7

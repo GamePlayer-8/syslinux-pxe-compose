@@ -16,7 +16,6 @@ env:
   DEBIAN_FRONTEND: 'noninteractive'
   TZ: Etc/UTC
   IMAGE_NAME: nan/nan
-  GH_RUNNER: false
 
 jobs:
   build:
