@@ -2,6 +2,7 @@ name: pxe
 
 services:
   pxe:
+    # image: ghcr.io/gameplayer-8/syslinux-pxe-compose:latest
     build:
       context: .
       dockerfile: Dockerfile
