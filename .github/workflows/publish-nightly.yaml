@@ -16,6 +16,7 @@ env:
   DEBIAN_FRONTEND: 'noninteractive'
   TZ: Etc/UTC
   IMAGE_NAME: nan/nan
+  GH_RUNNER: false
 
 jobs:
   build:
@@ -55,6 +56,10 @@ jobs:
       - name: Push Docker image to GHCR
         run: |
           docker push ghcr.io/${{ env.IMAGE_NAME }}:nightly
+      
+      - name: Set success
+        run: |
+          echo 'GH_RUNNER="true"' >> ${GITHUB_ENV}
 
   build-fallback:
     runs-on: self-hosted
@@ -92,8 +97,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    needs: [build, build-fallback]
-    if: success()
+    if: ${{ needs.build.result == 'success' && needs.build-fallback.result == 'skipped'  || needs.build.result == 'failure' && needs.build-fallback.result == 'success' }}
     steps:
       - name: Publish release
         uses: notpeelz/action-gh-create-release@v5.0.1
