@@ -1,0 +1,30 @@
+name: pxe
+
+services:
+  pxe:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pxe
+    restart: unless-stopped
+    privileged: true
+    networks:
+      pxe:
+        ipv4_address: 172.16.82.30
+    ports:
+      - 200:69/udp
+    volumes:
+      - ./netboot:/netboot:ro
+    tmpfs:
+      - /tftpboot:rw,mode=1777
+
+networks:
+  pxe:
+    name: pxe
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.82.0/24
+        - subnet: fd4d:6166:6c63:5f76::/64

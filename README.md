@@ -1,31 +1,31 @@
-# Alpine-pxe
-Alpine-pxe is a docker container for serving Ubuntu netboot image for PXE-boot.
-this container uses Alpine and dnsmasq in order to serve the image.
+# Syslinux PXE Compose
 
-configure what verson of alpine to run (default "latest")
-1. docker build --build-arg VERSION=youreversion
-
-## DOCKER HUB
-
-https://registry.hub.docker.com/u/reapsz/alpine-pxe/
+The repository is about deploying multiple netboot distros over network, using dnsmasq, tftpd & syslinux.
+Can be easily automated and autoscalled with Docker SWARM / Kubernetes. Does **not** provide DHCP *unless* `dnsmasq.conf` 
+has been modified to do so.
 
 ## GitHub
 
-https://github.com/thereapsz/alpine-pxe
+https://github.com/GamePlayer-8/syslinux-pxe-compose/
 
 ## EXAMPLE
 ```
-$ docker run -d -p 69:69/udp --restart=always --privileged --cap-add=NET_ADMIN reapsz/alpine-pxe
-
-$ docker run -d -p 69:69/udp --cap-add=NET_ADMIN reapsz/alpine-pxe
+$ docker compose up -d
 ```
-For use with Pfsense/opnsense add the ip of the docker host and add "pxelinux.0" to "Set default bios filename".
+It starts with 69/udp port. Uses ./netboot directory as a place for getting the netboot distros.
+Packaging `*.tar.gz` - searches for `*linu*` as KERNEL and `initr*` as INITRAMFS.
 
 ## REQUIREMENTS
 
 * [Docker](https://www.docker.com/)
 
 ## Based on:
+https://github.com/thereapsz/alpine-pxe/
+
 https://registry.hub.docker.com/u/mcandre/docker-pxe/
 
-https://github.com/mcandre/docker-pxe
+https://github.com/mcandre/docker-pxe/
+
+# License
+
+[MIT](LICENSE.md)
