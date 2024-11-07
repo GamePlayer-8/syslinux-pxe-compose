@@ -96,7 +96,7 @@ jobs:
           docker push ghcr.io/${{ env.IMAGE_NAME }}:nightly
 
   publish:
-    runs-on: ubuntu-latest\
+    runs-on: ubuntu-latest
     needs: [build, build-fallback]
     if: ${{ (needs.build.result == 'success' && github.event_name != 'workflow_run') || (needs.build.result == 'failure' && needs.build-fallback.result == 'success') }}
     steps:
