@@ -84,12 +84,12 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ env.IMAGE_NAME }}:${{ steps.set_tag.outputs.tag }} .
+          docker build -t ghcr.io/${{ env.IMAGE_NAME }}:${{ env.tag }} .
           docker build -t ghcr.io/${{ env.IMAGE_NAME }}:latest .
       
       - name: Push Docker image to GHCR
         run: |
-          docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ steps.set_tag.outputs.tag }}
+          docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.tag }}
           docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
 
   build-fallback:
@@ -141,12 +141,12 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ env.IMAGE_NAME }}:${{ steps.set_tag.outputs.tag }} .
+          docker build -t ghcr.io/${{ env.IMAGE_NAME }}:${{ env.tag }} .
           docker build -t ghcr.io/${{ env.IMAGE_NAME }}:latest .
       
       - name: Push Docker image to GHCR
         run: |
-          docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ steps.set_tag.outputs.tag }}
+          docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.tag }}
           docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
 
   publish:
