@@ -19,7 +19,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Maximize build space
@@ -29,10 +29,22 @@ jobs:
           swap-size-mb: 1024
           remove-dotnet: 'true'
       
+      - name: Install git
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git git-lfs
+          sudo apt-get autopurge -y
+          sudo apt-get clean
+
       - name: Checkout branch
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           ref: ${{ inputs.target }}
+          fetch-depth: '0'
+          fetch-tags: 'true'
+          lfs: 'true'
+          submodules: 'true'
+          set-safe-directory: 'true'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -67,10 +79,22 @@ jobs:
     if: failure()
 
     steps:
+      - name: Install git
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git git-lfs
+          sudo apt-get autopurge -y
+          sudo apt-get clean
+
       - name: Checkout branch
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           ref: ${{ inputs.target }}
+          fetch-depth: '0'
+          fetch-tags: 'true'
+          lfs: 'true'
+          submodules: 'true'
+          set-safe-directory: 'true'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -95,7 +119,7 @@ jobs:
           docker push ghcr.io/${{ env.IMAGE_NAME }}:nightly
 
   publish:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [build, build-fallback]
     if: |
       always() && 
