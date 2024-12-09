@@ -29,7 +29,7 @@ env:
   IMAGE_NAME: nan/nan
   tag: ${{ github.event.inputs.tag || github.ref_name || 'v1.0' }}
   prev_tag: ${{ github.event.inputs.tag || github.ref_name || 'v1.0' }}
-  
+
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -73,9 +73,9 @@ jobs:
         id: set_tag
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            echo "::set-output name=tag::${{ github.event.inputs.tag }}"
+            echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_ENV
           else
-            echo "::set-output name=tag::$(echo "${{ github.ref }}" | sed 's/refs\/tags\///')"
+            echo "tag=$(echo "${{ github.ref }}" | sed 's/refs\/tags\///')" >> $GITHUB_ENV
           fi
 
       - name: lowercase github.repository
@@ -130,9 +130,9 @@ jobs:
         id: set_tag
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            echo "::set-output name=tag::${{ github.event.inputs.tag }}"
+            echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_ENV
           else
-            echo "::set-output name=tag::$(echo "${{ github.ref }}" | sed 's/refs\/tags\///')"
+            echo "tag=$(echo "${{ github.ref }}" | sed 's/refs\/tags\///')" >> $GITHUB_ENV
           fi
 
       - name: lowercase github.repository
